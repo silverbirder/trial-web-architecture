@@ -1,3 +1,6 @@
 [submodule "microfrontends"]
 	path = microfrontends
 	url = https://github.com/naltatis/micro-frontends-in-action-code
+[submodule "jamstack"]
+	path = jamstack
+	url = https://github.com/jamstack-cms/jamstack-ecommerce
