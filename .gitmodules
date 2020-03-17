@@ -1,0 +1,3 @@
+[submodule "microfrontends"]
+	path = microfrontends
+	url = https://github.com/naltatis/micro-frontends-in-action-code
