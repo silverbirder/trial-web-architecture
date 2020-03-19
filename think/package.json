@@ -1,0 +1,16 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "6_ssi": "concurrently --names 'nginx  ,decide ,inspire' \"nginx -c \\\"`pwd`/6_ssi/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 6_ssi/team-decide\" \"mfserve --listen 3002 6_ssi/team-inspire\" \"npm run open -- http://localhost:3000/product/porsche\"",
+    "16_single_spa": "concurrently --names 'app-shell,decide   ,inspire  ,checkout ' \"mfserve --listen 3000 --single 16_single_spa/app-shell\" \"mfserve --listen 3001 --cors 16_single_spa/team-decide\" \"mfserve --listen 3002 --cors 16_single_spa/team-inspire\" \"mfserve --listen 3003 --cors 16_single_spa/team-checkout\" \"npm run open -- http://localhost:3000\""
+  },
+  "author": "silverbirder",
+  "license": "MIT",
+  "dependencies": {
+    "@microfrontends/serve": "^11.2.0",
+    "concurrently": "^4.1.0"
+  }
+}
