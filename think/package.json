@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --names 'nginx,app-shell,checkout,decide,inspire,search' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 app-shell\" \"mfserve --listen 3002 team-checkout\" \"mfserve --listen 3003 team-decide\" \"mfserve --listen 3004 team-inspire\" \"mfserve --listen 3005 team-search\" \"npm run open -- http://localhost:3000\"",
+    "team-decide": "cd team-decide && npm run babel && npm run build && npm run start",
+    "start": "concurrently --names 'nginx  ,app-shell ,decide' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 app-shell\" \"npm run team-decide\" \"npm run open -- http://localhost:3000\"",
     "open": "sleepms 3000 && opener"
   },
   "author": "silverbirder",
