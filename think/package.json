@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "team-decide": "cd team-decide && npm run babel && npm run build && npm run start",
-    "start": "concurrently --names 'nginx  ,app-shell ,decide' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 app-shell\" \"npm run team-decide\" \"npm run open -- http://localhost:3000\"",
-    "open": "sleepms 3000 && opener"
+    "team-search": "cd team-search && npm run babel && npm run build && npm run start",
+    "start": "concurrently --names 'nginx,page,decide,search' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 team-page\" \"npm run team-decide\" \"npm run team-search\" \"npm run open -- http://localhost:3000\"",
+    "open": "sleepms 5000 && opener"
   },
   "author": "silverbirder",
   "license": "MIT",
