@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "6_ssi": "concurrently --names 'nginx  ,decide ,inspire' \"nginx -c \\\"`pwd`/6_ssi/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 6_ssi/team-decide\" \"mfserve --listen 3002 6_ssi/team-inspire\" \"npm run open -- http://localhost:3000/product/porsche\"",
-    "16_single_spa": "concurrently --names 'app-shell,decide   ,inspire  ,checkout ' \"mfserve --listen 3000 --single 16_single_spa/app-shell\" \"mfserve --listen 3001 --cors 16_single_spa/team-decide\" \"mfserve --listen 3002 --cors 16_single_spa/team-inspire\" \"mfserve --listen 3003 --cors 16_single_spa/team-checkout\" \"npm run open -- http://localhost:3000\""
+    "start": "concurrently --names 'nginx,app-shell,checkout,decide,inspire,search' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"mfserve --listen 3001 app-shell\" \"mfserve --listen 3002 team-checkout\" \"mfserve --listen 3003 team-decide\" \"mfserve --listen 3004 team-inspire\" \"mfserve --listen 3005 team-search\" \"npm run open -- http://localhost:3000\"",
+    "open": "sleepms 3000 && opener"
   },
   "author": "silverbirder",
   "license": "MIT",
   "dependencies": {
     "@microfrontends/serve": "^11.2.0",
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "opener": "^1.5.1",
+    "sleep-ms": "^2.0.1"
   }
 }
