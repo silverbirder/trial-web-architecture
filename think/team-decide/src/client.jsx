@@ -1,6 +1,5 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
-import CountUp from './CountUp';
+import CountUp from './components/CountUp';
 
-// idがappの部分をhydrateで描画する
-hydrate(<CountUp />, document.querySelector('#decide-app'));
+hydrate(<CountUp />, document.querySelector('#team-decide'));

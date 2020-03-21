@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "babel src -x '.js,.jsx' -d views",
     "build": "webpack --mode development",
-    "start": "node -r esm index.js"
+    "start": "npm run babel && npm run build && node -r esm index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
