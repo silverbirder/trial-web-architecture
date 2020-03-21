@@ -7,14 +7,14 @@
 
 <script>
     export default {
-        data () {
-            return {
-                count: 0
-            }
+        computed: {
+            count () {
+                return this.$store.getters.getCount
+            },
         },
         methods: {
             increment () {
-                this.count++
+                this.$store.dispatch('increment')
             },
         }
     }
