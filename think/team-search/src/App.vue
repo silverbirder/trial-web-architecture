@@ -1,29 +1,27 @@
 <template>
-  <div id="app">
-    <h1>{{message}}</h1>
-    <section>
-      <button v-on:click="greet">Greet</button>
-    </section>
-  </div>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <count-up></count-up>
+    </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        message: 'Hey!'
-      }
-    },
-    methods: {
-      greet: function () {
-        alert('Hello World');
-      }
+    import CountUp from './components/CountUp.vue'
+
+    export default {
+        data() {
+            return {
+                message: 'Search Area'
+            }
+        },
+        components: {
+            CountUp
+        }
     }
-  }
 </script>
 
 <style scoped>
-  h1 {
-    color: red;
-  }
+    h1 {
+        color: red;
+    }
 </style>
