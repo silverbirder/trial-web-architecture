@@ -4,10 +4,10 @@ const express = require('express');
 const VueServerRenderer = require('vue-server-renderer');
 
 const app = express();
-app.use('/search_assets', express.static('assets'));
+app.use('/search_dist', express.static('dist'));
 
 const template = fs.readFileSync(path.join(__dirname, 'src/index.template.html'), 'utf-8');
-const renderer = VueServerRenderer.createBundleRenderer(path.join(__dirname, 'assets/vue-ssr-server-bundle.json'), { template });
+const renderer = VueServerRenderer.createBundleRenderer(path.join(__dirname, 'dist/vue-ssr-server-bundle.json'), { template });
 
 app.get('/search/', (req, res) => {
   const ctx = { url: req.url };

@@ -2,9 +2,9 @@
   "name": "team-page",
   "version": "1.0.0",
   "description": "",
-  "main": "postal.lodash.min.js",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "start": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",

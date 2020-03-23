@@ -5,7 +5,7 @@ const app = express();
 
 app.listen(3002);
 
-app.use("/decide_assets", express.static("./assets"));
+app.use("/decide_dist", express.static("./dist"));
 
 app.get('/decide/', (_, res) => {
     const response = ssr();

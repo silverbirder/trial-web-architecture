@@ -1,3 +1,5 @@
 import postal from 'postal'
 
-window.channel = postal.channel('team');
+window.channelPage = postal.channel('team-page');
+window.channelSearch = postal.channel('team-search');
+window.channelDecide = postal.channel('team-decide');

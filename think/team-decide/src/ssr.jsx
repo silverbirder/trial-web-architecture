@@ -6,7 +6,7 @@ const ssr = () => (`
         <div id="team-decide">
             ${renderToString(<CountUp />)}
         </div>
-        <script src="/decide_assets/client.js"></script>
+        <script src="/decide_dist/index.js"></script>
 `);
 
 export default ssr;

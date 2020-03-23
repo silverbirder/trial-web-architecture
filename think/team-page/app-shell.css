@@ -1,5 +1,3 @@
-/* GLOBAL STYLES */
-
 * {
   box-sizing: border-box;
 }
@@ -15,29 +13,4 @@ a {
 
 body {
   padding: 1rem;
-}
-
-#app-shell {
-   border: 3px solid #e5a044;
-   position: relative;
-   padding: 1rem;
-}
-
-#app-shell::after {
-  content: "team page";
-  background: #e5a044;
-}
-
-#app-shell:not(:empty)::after{
-  position: absolute;
-  color: white;
-  display: block;
-  bottom: -1.5rem;
-  line-height: 1.5rem;
-  padding: 0 0.5em;
-}
-
-#app-shell:not(:empty)::after {
-  left: -3px;
-  bottom: 0;
 }
