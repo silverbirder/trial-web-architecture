@@ -1,5 +1,7 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
-import CountUp from './components/CountUp';
+import Item from "./components/Item";
 
-hydrate(<CountUp />, document.querySelector('#team-decide'));
+setTimeout(() => {
+    hydrate(React.createElement(Item, { name: 'item'}), document.querySelector('#team-decide-items'));
+}, 1000);
