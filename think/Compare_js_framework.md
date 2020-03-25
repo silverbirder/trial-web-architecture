@@ -4,13 +4,7 @@
 * https://nodesource.com/blog/next-nuxt-nest/
 * https://codersera.com/blog/nuxt-next-nest-confused/
 * https://stackshare.io/stackups/nestjs-vs-next-js-vs-nuxt
+* https://trends.google.co.jp/trends/explore?cat=13&date=all&q=nextjs,nuxtjs,nestjs
+* https://www.githubcompare.com/nuxt/nuxt.js+zeit/next.js+nestjs/nest
 
 ## Compare
-
-|check|nuxtjs|nextjs|nestjs|
-| -- | -- | -- |
-|Installation|||
-|performance|||
-|Popularity|||
-|Advantages|||
-|Disadvantages|||
