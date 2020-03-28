@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
     selector: 'ng-console-root',
     templateUrl: 'app.component.html',
-    providers: [ TodoService ],
+    providers: [ TodoService],
     styles: [`
         .m-b {
             margin-bottom: 20px;
@@ -15,8 +14,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
     todos: Todo[] = [];
+    status: string = "";
     newTodo: Todo = new Todo();
-    private sub = new Subject()
 
     constructor(private todoService: TodoService) {}
 
@@ -27,11 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     search(text: string) {
         this.todoService.search(text)
-            .subscribe(todos => this.todos = todos)
-    }
-
-    showActive() {
-        this.todoService.showActive()
             .subscribe(todos => this.todos = todos)
     }
 
@@ -53,8 +47,18 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.todos = this.todos.filter(t => t._id != todo._id);
             });
     }
-    clearCompletedTodos() {
-        // will implement
+
+    getTodosCompleted() {
+        return this.todos.filter(t => t.complete);
+    }
+
+    removeCompleted() {
+        this.todos.filter(t => t.complete).map(t => {
+           this.todoService.deleteTodoById(t._id)
+               .subscribe(todo => {
+                   this.todos = this.todos.filter(t => t._id != todo._id);
+               });
+        });
     }
 
     ngOnDestroy() {

@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { APIInterceptor } from './api-interceptor';
 
 const routes: Routes = [
-    { path: '', component: AppComponent },
+    { path: ':status', component: AppComponent },
 ];
 
 @NgModule({

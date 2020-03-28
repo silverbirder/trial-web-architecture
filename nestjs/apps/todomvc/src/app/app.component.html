@@ -11,18 +11,7 @@
     <section class="main" *ngIf="todos.length > 0">
         <ul class="todo-list">
             <ng-container *ngFor="let todo of todos">
-                <li *ngIf="!todo.complete">
-                    <div class="view">
-                        <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-                        <label>
-                            {{todo.title}}
-                        </label>
-                        <button class="destroy" (click)="removeTodo(todo)"></button>
-                    </div>
-                </li>
-            </ng-container>
-            <ng-container *ngFor="let todo of todos">
-                <li *ngIf="todo.complete" class="completed">
+                <li [class.completed]="todo.complete" >
                     <div class="view">
                         <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
                         <label>
@@ -43,15 +32,15 @@
         </span>
         <ul class="filters">
             <li>
-                <a ng-class="{selected: status == ''} " href="#/" class="selected">All</a>
+                <a [class.selected]="status === ''" [routerLink]="['']">All</a>
             </li>
             <li>
-                <a ng-class="{selected: status == 'active'}" href="#/active">Active</a>
+                <a [class.selected]="status === 'active'" [routerLink]="['active']">Active</a>
             </li>
             <li>
-                <a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
+                <a [class.selected]="status === 'completed'" [routerLink]="['completed']">Completed</a>
             </li>
         </ul>
-        <button class="clear-completed" (click)="clearCompletedTodos()">Clear completed</button>
+        <button class="clear-completed" *ngIf="getTodosCompleted().length > 0" (click)="removeCompleted()">Clear completed</button>
     </footer>
 </section>

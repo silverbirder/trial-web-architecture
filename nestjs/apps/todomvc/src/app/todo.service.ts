@@ -19,10 +19,6 @@ export class TodoService {
         return this.http.get<Todo[]>('tasks/search?title=' + text);
     }
 
-    showActive(): Observable<Todo[]> {
-        return this.http.get<Todo[]>('tasks/active');
-    }
-
     // Simulate GET /todos
     getAllTodos(): Observable<Todo[]> {
         return this.http.get<Todo[]>('tasks');
@@ -36,11 +32,6 @@ export class TodoService {
     // Simulate DELETE /todos/:id
     deleteTodoById(id: number): Observable<Todo> {
         return this.http.delete<Todo>('tasks/' + id);
-    }
-
-    // Simulate PUT /todos/:id
-    updateTodoById(todo): Observable<Todo> {
-        return this.http.patch<Todo>('tasks', todo);
     }
 
     // Toggle todo complete
