@@ -1,0 +1,21 @@
+{
+  "npmScope": "ng-console",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "todomvc": {
+      "tags": []
+    },
+    "backend": {
+      "tags": []
+    },
+    "hapi": {
+      "tags": []
+    }
+  }
+}
