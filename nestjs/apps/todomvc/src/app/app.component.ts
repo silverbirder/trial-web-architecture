@@ -1,6 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
+import {NavigationStart, Router} from "@angular/router";
+
+export enum STATUS {
+    Free = '',
+    Active = 'active',
+    Completed = 'completed',
+}
 
 @Component({
     selector: 'ng-console-root',
@@ -14,12 +21,17 @@ import { TodoService } from './todo.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
     todos: Todo[] = [];
-    status: string = "";
+    status: string = STATUS.Free;
     newTodo: Todo = new Todo();
 
-    constructor(private todoService: TodoService) {}
+    constructor(private todoService: TodoService, private router: Router) {}
 
     ngOnInit() {
+        this.router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+                this.status = event.url.slice(1);
+            }
+        });
         this.todoService.getAllTodos()
             .subscribe(todos => this.todos = todos)
     }
@@ -59,6 +71,16 @@ export class AppComponent implements OnInit, OnDestroy {
                    this.todos = this.todos.filter(t => t._id != todo._id);
                });
         });
+    }
+
+    filterStatus(todo: Todo): boolean {
+        if (this.status == STATUS.Active) {
+            return !todo.complete;
+        } else if (this.status == STATUS.Completed) {
+            return todo.complete;
+        } else {
+            return true;
+        }
     }
 
     ngOnDestroy() {

@@ -11,7 +11,7 @@
     <section class="main" *ngIf="todos.length > 0">
         <ul class="todo-list">
             <ng-container *ngFor="let todo of todos">
-                <li [class.completed]="todo.complete" >
+                <li [class.completed]="todo.complete" *ngIf="filterStatus(todo)">
                     <div class="view">
                         <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
                         <label>
