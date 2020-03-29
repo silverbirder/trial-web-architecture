@@ -21,8 +21,13 @@ nestは、node.jsのバックエンドを作るためのフレームワーク。
 # TODO MVC Sample
 * https://github.com/maratvmk/todomvc-with-nest-mongoose
 
-# Step
-$ npm i -g @nestjs/cli
-$ nest new nestjs
-$ cd nestjs
-$ npm run start
+# つらかったこと
+
+・urlを取得する方法がわからなかった。  
+-> Router から navigationStartというeventから取れる。  
+-> 公式ドキュメントに書いてあった。  
+-> app.module.tsのimports、declarations、providersなど、ある程度覚える必要あり  
+
+DIコンテナが手軽に使えるみたいだけど、どうすればよいのかわからない。
+
+・npm install -g @angular/cli が必須 (ng. @ng-cliではない)
