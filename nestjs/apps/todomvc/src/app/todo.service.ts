@@ -1,19 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Todo } from './todo';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Todo} from './todo';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class TodoService {
-
-    // Placeholder for last id so we can simulate
-    // automatic incrementing of id's
-    lastId: number = 0;
-
-    // Placeholder for todo's
-    todos: Todo[] = [];
-
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     search(text): Observable<Todo[]> {
         return this.http.get<Todo[]>('tasks/search?title=' + text);
@@ -34,7 +27,7 @@ export class TodoService {
         return this.http.delete<Todo>('tasks/' + id);
     }
 
-    // Update todo
+    // Simulate Patch
     updateTodo(todo: Todo) {
         return this.http.patch<Todo>('tasks', todo);
     }

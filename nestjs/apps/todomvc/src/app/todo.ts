@@ -5,6 +5,6 @@ export class Todo {
     editing: boolean = false;
 
     constructor(values: Object = {}) {
-      Object.assign(this, values);
+        Object.assign(this, values);
     }
 }
