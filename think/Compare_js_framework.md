@@ -14,3 +14,4 @@
 |[Why choose](https://stackshare.io/stackups/nestjs-vs-next-js-vs-nuxt)|・ SSR.<br>・ Automatic routes.<br>・ Middleware.<br>・ Hot code reloading.|・ Automatic server rendering and code splitting.<br>・ Universal JavaScript.<br>・ Built with React.<br>・ Easy setup.<br>・ Zero setup.|・ Powerful but super friendly to work with.<br>・ Angular style syntax for the backend.<br>・ Fast development.<br>・ Easy to understand documentation.|
 
 * [google trend](https://trends.google.co.jp/trends/explore?cat=13&date=all&q=nextjs,nuxtjs,nestjs)
+* [npm trend](https://www.npmtrends.com/nuxt-vs-next-vs-@nestjs/core)
