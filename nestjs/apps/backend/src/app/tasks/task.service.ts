@@ -13,8 +13,9 @@ export class TasksService {
     }
 
     async patch(taskDto): Promise<Task> {
-        let task = await this.taskModel.findById(taskDto._id);
+        const task = await this.taskModel.findById(taskDto._id);
         task.complete = taskDto.complete;
+        task.title = taskDto.title;
         return await task.save();
     }
 

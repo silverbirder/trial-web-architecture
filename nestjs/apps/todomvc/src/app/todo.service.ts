@@ -34,8 +34,8 @@ export class TodoService {
         return this.http.delete<Todo>('tasks/' + id);
     }
 
-    // Toggle todo complete
-    toggleTodoComplete(todo: Todo) {
+    // Update todo
+    updateTodo(todo: Todo) {
         return this.http.patch<Todo>('tasks', todo);
     }
 }
