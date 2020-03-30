@@ -1,6 +1,6 @@
 # How to run in local machine
 
-![demo](https://res.cloudinary.com/silverbirder/image/upload/v1585571668/todo_mvc/todomvc_by_nestjs_640_480.gif)
+![demo](https://res.cloudinary.com/silverbirder/image/upload/v1585572348/todo_mvc/todomvc_by_nestjs_378_307.gif)
 
 ## Only Frontend
 
