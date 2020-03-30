@@ -1,11 +1,22 @@
 # How to run in local machine
 
-Run all commands from root of the project.
+![demo](https://res.cloudinary.com/silverbirder/image/upload/v1585571668/todo_mvc/todomvc_by_nestjs_640_480.gif)
 
-First of all run mongo with `docker-compose up -d`.
+## Only Frontend
 
-Run NestJS backend with `ng serve backend` or HapiJS backend with `ng serve hapi`.
+```shell script
+$ npm install -g @angular/cli
+$ npm install
+$ ng serve todomvc
+```
 
-Then run frontend with `ng serve todomvc`.
+## Use Database
 
-Also you can run this project from [angularconsole](https://angularconsole.com/)
+```shell script
+$ npm install -g @angular/cli
+$ npm install
+$ docker-compose up -d
+$ ng serve backend
+# edit todomvc/src/app/app.component.ts TodoServiceInMemory => TodoService
+$ ng serve todomvc
+```
