@@ -28,7 +28,7 @@ export class TodoService {
     }
 
     // Simulate Patch
-    updateTodo(todo: Todo) {
+    updateTodo(todo: Todo): Observable<Todo> {
         return this.http.patch<Todo>('tasks', todo);
     }
 }

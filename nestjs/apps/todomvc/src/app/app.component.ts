@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Todo} from './todo';
-import {TodoService} from './todo.service';
 import {NavigationStart, Router} from "@angular/router";
+import {TodoServiceInMemory} from "./todo.service.inMemory";
 
 export enum STATUS {
     Free = '',
@@ -12,7 +12,7 @@ export enum STATUS {
 @Component({
     selector: 'ng-console-root',
     templateUrl: 'app.component.html',
-    providers: [TodoService],
+    providers: [TodoServiceInMemory],
     styles: [`
         .m-b {
             margin-bottom: 20px;
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
     status: string = STATUS.Free;
     newTodo: Todo = new Todo();
 
-    constructor(private todoService: TodoService, private router: Router) {
+    constructor(private todoService: TodoServiceInMemory, private router: Router) {
     }
 
     ngOnInit() {
@@ -43,9 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     addTodo() {
-        this.todoService.addTodo(this.newTodo).subscribe(todo => {
-            this.todos.push(todo);
-        });
+        this.todoService.addTodo(this.newTodo).subscribe(todo => this.todos.push(todo));
         this.newTodo = new Todo();
     }
 
