@@ -7,7 +7,7 @@
     "team-decide": "cd team-decide && npm run start",
     "team-search": "cd team-search && npm run start",
     "team-page": "cd team-page && npm run start",
-    "start": "concurrently --names 'nginx,page,decide,search' \"nginx -c \\\"`pwd`/webserver/nginx.conf\\\"\" \"npm run team-page && mfserve --listen 3001 team-page\" \"npm run team-decide\" \"npm run team-search\" \"npm run open -- http://localhost:3000\"",
+    "start": "concurrently --names 'page,decide,search' \"npm run team-page\" \"npm run team-decide\" \"npm run team-search\" \"npm run open -- http://localhost:3000\"",
     "open": "sleepms 5000 && opener"
   },
   "author": "silverbirder",

@@ -13,6 +13,11 @@ app.get('/search/', (req, res) => {
   const ctx = { url: req.url };
   renderer.renderToString(ctx, (err, html) => {
     if (err) return res.status(500).end('Interval Server Error');
+    const js = '<http://localhost:3003/search/static/fragment.js>; rel="fragment-script"';
+    res.writeHead(200, {
+      Link: `${js}`,
+      'Content-Type': 'text/html'
+    });
     res.end(html);
   });
 });
