@@ -4,7 +4,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = {
   entry: path.join(__dirname, 'src/entry-client.js'),
   output: {
-    filename: 'index.js',
+    filename: 'fragment.js',
     path: path.join(__dirname, 'dist')
   },
   module: {

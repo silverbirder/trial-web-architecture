@@ -4,7 +4,7 @@ const ssr = () => (`
         <div id="team-decide">
             <div id="team-decide-items"></div>
         </div>
-        <script src="/decide_dist/index.js"></script>
+        <script src="/decide/static/fragment.js"></script>
 `);
 
 export default ssr;

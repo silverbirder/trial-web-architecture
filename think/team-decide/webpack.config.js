@@ -13,7 +13,7 @@ module.exports = {
         // アウトプット先のディレクトリを指定(assets)
         path: path.resolve(__dirname, 'dist'),
         // アウトプットするファイルの名前を指定(名前は変更しない)
-        filename: 'index.js',
+        filename: 'fragment.js',
     },
     module: {
         rules: [
