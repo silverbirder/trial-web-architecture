@@ -1,5 +1,7 @@
 import postal from 'postal'
 
-window.channel.page = postal.channel('team:page');
-window.channel.search = postal.channel('team:search');
-window.channel.decide = postal.channel('team:decide');
+window.channel  = {
+    page: postal.channel('team:page'),
+    search: postal.channel('team:search'),
+    decide: postal.channel('team:decide'),
+};
