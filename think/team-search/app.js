@@ -1,5 +1,9 @@
 const path = require('path');
 const fs = require('fs');
+
+const port = process.env.PORT || 3003;
+const host = process.env.HOST || `http://localhost:${port}`;
+
 const express = require('express');
 const VueServerRenderer = require('vue-server-renderer');
 
@@ -13,7 +17,7 @@ app.get('/search/', (req, res) => {
   const ctx = { url: req.url };
   renderer.renderToString(ctx, (err, html) => {
     if (err) return res.status(500).end('Interval Server Error');
-    const js = '<http://localhost:3003/search/static/fragment.js>; rel="fragment-script"';
+    const js = `<${host}/search/static/fragment.js>; rel="fragment-script"`;
     res.writeHead(200, {
       Link: `${js}`,
       'Content-Type': 'text/html'
@@ -22,4 +26,4 @@ app.get('/search/', (req, res) => {
   });
 });
 
-app.listen(3003);
+app.listen(port);
