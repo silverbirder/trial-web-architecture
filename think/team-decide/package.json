@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babel": "babel src -x '.js,.jsx' -d views",
-    "build": "webpack -p",
-    "start": "npm run babel && npm run build && node -r esm index.js"
+    "start": "node -r esm index.js",
+    "prestart": "npm run babel && npm run build:prod",
+    "dev": "node -r esm index.js",
+    "predev": "npm run babel && npm run build:dev",
+    "build:prod": "webpack --mode=production",
+    "build:dev": "webpack --mode=development",
+    "babel": "babel src -x '.js,.jsx' -d views"
   },
   "author": "",
   "license": "ISC",

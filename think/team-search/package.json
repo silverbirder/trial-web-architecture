@@ -4,12 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app",
     "prestart": "npm run build:prod",
     "dev": "nodemon node app",
     "predev": "npm run build:dev",
-    "build:prod": "webpack -p --config=webpack.client.config.js && webpack -p --config=webpack.server.config.js",
+    "build:prod": "webpack --mode=production --config=webpack.client.config.js && webpack --mode=production  --config=webpack.server.config.js",
     "build:dev": "webpack --mode=development --config=webpack.client.config.js && webpack --mode=development --config=webpack.server.config.js"
   },
   "keywords": [],
