@@ -1,15 +1,23 @@
 const express = require('express');
 const Tailor = require('node-tailor');
-const filterHeaders = require('node-tailor/lib/request-fragment');
+const filterHeaderFn = () => ({});
+const requestFragment = require('node-tailor/lib/request-fragment')(filterHeaderFn);
 const port = process.env.PORT || 3000;
 const teamSearchHost = process.env.TEAM_SEARCH_HOST || 'http://localhost:3003/search';
 const teamDecideHost = process.env.TEAM_DECIDE_HOST || 'http://localhost:3002/decide';
 
-
 const tailor = new Tailor({
-    requestFragment: (async(a, url, attributes, req)=> {
-        attributes.src = teamDecideHost;
-        return await filterHeaders(url, attributes, req);
+    requestFragment: ((_, url) => {
+        let requestURL;
+        switch (url.id) {
+            case 'team-decide':
+                requestURL = teamDecideHost;
+                break;
+            case 'team-search':
+                requestURL = teamSearchHost;
+                break;
+        }
+        return requestFragment(requestURL, {timeout: 1000}, {headers: {}});
     })
 });
 
