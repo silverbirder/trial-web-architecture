@@ -1,7 +1,13 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
-import Item from "./components/Item";
+import {hydrate} from 'react-dom';
+import Items from "./components/Items";
 
-setTimeout(() => {
-    hydrate(React.createElement(Item, { name: 'item'}), document.querySelector('#team-decide-items'));
-}, 1000);
+const mockData = ['apple', 'banana', 'orange'];
+
+window.channel.search.subscribe("search.word", function (data) {
+    const text = data.text;
+    const filMock = mockData.filter((data) => {
+       return data.match(new RegExp(text)) !== null;
+    });
+    hydrate(React.createElement(Items, {items: filMock}), document.querySelector('#team-decide-items'));
+});

@@ -1,15 +1,15 @@
 <template>
     <div id="team-search">
-        <count-up></count-up>
+        <search-box></search-box>
     </div>
 </template>
 
 <script>
-    import CountUp from './components/CountUp.vue'
+    import SearchBox from './components/SearchBox.vue'
 
     export default {
         components: {
-            CountUp
+            SearchBox
         }
     }
 </script>
