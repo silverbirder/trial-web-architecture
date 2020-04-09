@@ -14,7 +14,8 @@
     "team-page:dev": "cd team-page && npm run dev",
     "start": "concurrently --names 'page,decide,search' \"npm run team-page:prod\" \"npm run team-decide:prod\" \"npm run team-search:prod\" \"npm run open -- http://localhost:3000\"",
     "dev": "concurrently --names 'page,decide,search' \"npm run team-page:dev\" \"npm run team-decide:dev\" \"npm run team-search:dev\" \"npm run open -- http://localhost:3000\"",
-    "open": "sleepms 5000 && opener"
+    "open": "sleepms 5000 && opener",
+    "deploy": "concurrently --names 'page,decide,search' \"cd team-page && flyctl deploy\" \"cd team-decide && flyctl deploy\" \"cd team-search && flyctl deploy\""
   },
   "author": "silverbirder",
   "license": "MIT",
