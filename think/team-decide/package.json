@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "NODE_ENV=production node dist/server.js",
     "prestart": "npm run build:prod",
-    "dev": "node dist/server.js",
+    "dev": "NODE_ENV=development node dist/server.js",
     "predev": "npm run build:dev",
     "build:prod": "webpack --mode=production --config=webpack.client.config.js && webpack --mode=production  --config=webpack.server.config.js",
     "build:dev": "webpack --mode=development --config=webpack.client.config.js && webpack --mode=development --config=webpack.server.config.js"
