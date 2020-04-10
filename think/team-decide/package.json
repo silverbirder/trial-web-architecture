@@ -2,15 +2,14 @@
   "name": "team-decide",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node -r esm index.js",
-    "prestart": "npm run babel && npm run build:prod",
-    "dev": "node -r esm index.js",
-    "predev": "npm run babel && npm run build:dev",
-    "build:prod": "webpack --mode=production",
-    "build:dev": "webpack --mode=development",
-    "babel": "babel src -x '.js,.jsx' -d views"
+    "start": "node dist/server.js",
+    "prestart": "npm run build:prod",
+    "dev": "node dist/server.js",
+    "predev": "npm run build:dev",
+    "build:prod": "webpack --mode=production --config=webpack.client.config.js && webpack --mode=production  --config=webpack.server.config.js",
+    "build:dev": "webpack --mode=development --config=webpack.client.config.js && webpack --mode=development --config=webpack.server.config.js"
   },
   "author": "",
   "license": "ISC",
