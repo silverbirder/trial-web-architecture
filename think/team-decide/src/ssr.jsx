@@ -1,9 +1,11 @@
 import React from 'react';
 
-const ssr = () => (`
+const SSR = (props) => {
+    return (
         <div id="team-decide">
             <div id="team-decide-items"></div>
         </div>
-`);
+    )
+};
 
-export default ssr;
+export default SSR;
