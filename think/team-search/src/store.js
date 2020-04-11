@@ -4,25 +4,38 @@ import Vue from 'vue'
 Vue.use(Vuex)
 
 const state = {
-    count: 0
-}
+    keyword: ''
+};
 const actions = {
-    increment (context) {
-        context.commit('increment')
+    search (context, payload) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                context.commit('search', payload.keyword);
+                resolve(state.keyword)
+            }, 500)
+        });
     },
-}
+};
 
 const getters = {
-    getCount (state) {
-        return state.count
+    getKeyword (state) {
+        return state.keyword
     }
-}
+};
 
 const mutations = {
-    increment (state) {
-        state.count += 1
+    search (state, keyword) {
+        state.keyword = keyword;
+        if (process.browser) {
+            window.channel.search.publish({
+                topic: "search.word",
+                data: {
+                    text: keyword
+                }
+            });
+        }
     },
-}
+};
 
 export default new Vuex.Store({
     state,

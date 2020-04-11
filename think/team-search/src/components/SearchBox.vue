@@ -6,18 +6,26 @@
 
 <script>
     export default {
-        data() {
+        created() {
+            const query = this.$route.query;
+            if (query.q) {
+                this.searchText = query.q;
+                this.$store.dispatch('search', {
+                    keyword: query.q,
+                })
+            }
+        },
+        computed() {
             return {
-                searchText: ''
+                searchText: this.$store.getKeyword()
             }
         },
         methods: {
             search() {
-                window.channel.search.publish({
-                    topic: "search.word",
-                    data: {
-                        text: `${this.searchText}`
-                    }
+                this.$store.dispatch('search', {
+                    keyword: this.searchText
+                }).then((keyword) => {
+                    this.$router.push(`/s?q=${keyword}`);
                 });
             },
         }
