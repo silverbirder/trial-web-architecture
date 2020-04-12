@@ -3,3 +3,5 @@
 https://router.vuejs.org/ja/guide/essentials/
 
 イベント登録のタイミングどうしよう。タイミングによっては、イベント発火が届かない。
+
+■ team-searchがなぜか起動していない
