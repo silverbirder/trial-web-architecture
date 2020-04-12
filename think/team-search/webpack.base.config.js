@@ -7,6 +7,9 @@ const config = {
     filename: 'fragment.js',
     path: path.join(__dirname, 'dist')
   },
+  resolve: {
+    extensions: ['.js', '.vue'],
+  },
   module: {
     rules: [
       {

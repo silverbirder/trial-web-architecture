@@ -2,12 +2,8 @@ FROM node:current-alpine
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
-
-RUN npm install
-
 COPY . .
+RUN npm install
 
 ENV PORT=8080
 ENV HOST="https://team-search.fly.dev"

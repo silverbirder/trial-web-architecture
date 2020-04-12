@@ -6,6 +6,9 @@ const config = {
     filename: 'fragment.js',
     path: path.join(__dirname, 'dist')
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {

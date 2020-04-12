@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from "./item.jsx";
+import Item from "./Item";
 
 class Items extends React.Component {
     render() {

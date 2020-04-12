@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import SSR from './SSR.jsx';
+import SSR from './ssr';
 const port = process.env.PORT || 3002;
 const host = process.env.HOST || `http://localhost:${port}`;
 const app = express();
