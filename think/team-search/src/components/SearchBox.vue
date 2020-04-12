@@ -1,33 +1,39 @@
 <template>
     <div>
-        <input type="text" v-model="searchText" @change="search">
+        <input type="text" v-model="keyword"><input type="button" value="search" v-on:click="search">
     </div>
 </template>
 
 <script>
     export default {
         created() {
-            const query = this.$route.query;
-            if (query.q) {
-                this.searchText = query.q;
-                this.$store.dispatch('search', {
-                    keyword: query.q,
-                })
-            }
+            this.keyword = this.$route.query.q ? this.$route.query.q: '';
+            this.$store.dispatch('searchKeyword');
         },
-        computed() {
-            return {
-                searchText: this.$store.getKeyword()
+        computed: {
+            keyword: {
+                get () {
+                    return this.$store.state.keyword
+                },
+                set (value) {
+                    this.$store.dispatch('setKeyword', {
+                        keyword: value,
+                    });
+                }
+            },
+        },
+        watch: {
+            '$route'(to, from) {
+                if (to.query.q === from.query.q) return;
+                this.keyword = to.query.q ? to.query.q : '';
+                this.$store.dispatch('searchKeyword');
             }
         },
         methods: {
             search() {
-                this.$store.dispatch('search', {
-                    keyword: this.searchText
-                }).then((keyword) => {
-                    this.$router.push(`/s?q=${keyword}`);
-                });
-            },
+                this.$store.dispatch('searchKeyword');
+                this.$router.push(`/s?q=${this.$store.state.keyword}`, () => {}, () => {});
+            }
         }
     }
 </script>

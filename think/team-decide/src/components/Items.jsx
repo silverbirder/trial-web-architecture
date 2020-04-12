@@ -6,7 +6,7 @@ class Items extends React.Component {
         return (
             <ul>
                 {this.props.items.map((item) => {
-                    return <Item name={item}></Item>
+                    return <Item name={item.name}></Item>
                 })}
             </ul>
         )

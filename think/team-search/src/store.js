@@ -1,40 +1,41 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const state = {
-    keyword: ''
+    keyword: '',
+    hitItems: []
 };
 const actions = {
-    search (context, payload) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                context.commit('search', payload.keyword);
-                resolve(state.keyword)
-            }, 500)
-        });
+    setKeyword(context, payload) {
+        context.commit('setKeyword', payload.keyword);
+    },
+    searchKeyword(context) {
+        context.commit('searchKeyword');
     },
 };
 
-const getters = {
-    getKeyword (state) {
-        return state.keyword
-    }
-};
+const getters = {};
 
 const mutations = {
-    search (state, keyword) {
-        state.keyword = keyword;
+    searchKeyword(state) {
+        const mockData = [{id: 1, name: 'apple'}, {id: 2, name: 'banana'}, {id: 3, name: 'orange'}];
+        state.hitItems = mockData.filter((data) => {
+            return data.name.match(new RegExp(state.keyword)) !== null;
+        });
         if (process.browser) {
             window.channel.search.publish({
                 topic: "search.word",
                 data: {
-                    text: keyword
+                    items: state.hitItems
                 }
             });
         }
     },
+    setKeyword(state, keyword) {
+        state.keyword = keyword;
+    }
 };
 
 export default new Vuex.Store({
