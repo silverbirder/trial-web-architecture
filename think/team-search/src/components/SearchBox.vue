@@ -8,7 +8,15 @@
     export default {
         created() {
             this.keyword = this.$route.query.q ? this.$route.query.q: '';
-            this.$store.dispatch('searchKeyword');
+            if (this.$store.state.pageAllReady) {
+                this.$store.dispatch('searchKeyword');
+            }else {
+                this.$store.subscribe((mutation) => {
+                    if (mutation.type === 'setPageAllReady') {
+                        this.$store.dispatch('searchKeyword');
+                    }
+                })
+            }
         },
         computed: {
             keyword: {

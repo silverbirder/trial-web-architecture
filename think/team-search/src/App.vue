@@ -10,6 +10,14 @@
     export default {
         components: {
             SearchBox
+        },
+        created() {
+            if(process.browser) {
+                const $store = this.$store;
+                window.channel.page.subscribe('page.allReady', function () {
+                    $store.dispatch('setPageAllReady');
+                });
+            }
         }
     }
 </script>

@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 const state = {
     keyword: '',
-    hitItems: []
+    hitItems: [],
+    pageAllReady: false
 };
 const actions = {
     setKeyword(context, payload) {
@@ -14,6 +15,9 @@ const actions = {
     searchKeyword(context) {
         context.commit('searchKeyword');
     },
+    setPageAllReady(context) {
+        context.commit('setPageAllReady');
+    }
 };
 
 const getters = {};
@@ -35,6 +39,9 @@ const mutations = {
     },
     setKeyword(state, keyword) {
         state.keyword = keyword;
+    },
+    setPageAllReady(state) {
+        state.pageAllReady = true;
     }
 };
 
