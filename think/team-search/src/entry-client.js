@@ -1,6 +1,9 @@
 import createApp from './app';
-const { app } = createApp();
+
+const {app} = createApp();
 app.$mount('#team-search');
-window.channel.search.publish({
-    topic: 'search.allReady',
+
+window.postal.publish({
+    channel: 'page',
+    topic: 'search.ready',
 });

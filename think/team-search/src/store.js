@@ -29,12 +29,13 @@ const mutations = {
             return data.name.match(new RegExp(state.keyword)) !== null;
         });
         if (process.browser) {
-            window.channel.search.publish({
-                topic: "search.word",
+            window.postal.publish({
+                channel: 'search',
+                topic: 'search.word',
                 data: {
                     items: state.hitItems
                 }
-            });
+            })
         }
     },
     setKeyword(state, keyword) {

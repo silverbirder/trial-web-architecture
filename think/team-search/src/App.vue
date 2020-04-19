@@ -12,10 +12,14 @@
             SearchBox
         },
         created() {
-            if(process.browser) {
+            if (process.browser) {
                 const $store = this.$store;
-                window.channel.page.subscribe('page.allReady', function () {
-                    $store.dispatch('setPageAllReady');
+                window.postal.subscribe({
+                    channel: 'page',
+                    topic: 'page.allReady',
+                    callback: function () {
+                        $store.dispatch('setPageAllReady');
+                    }
                 });
             }
         }

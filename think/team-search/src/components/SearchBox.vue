@@ -7,23 +7,24 @@
 <script>
     export default {
         created() {
-            this.keyword = this.$route.query.q ? this.$route.query.q: '';
+            this.keyword = this.$route.query.q ? this.$route.query.q : '';
             if (this.$store.state.pageAllReady) {
                 this.$store.dispatch('searchKeyword');
-            }else {
-                this.$store.subscribe((mutation) => {
+            } else {
+                const unsubscribe = this.$store.subscribe((mutation) => {
                     if (mutation.type === 'setPageAllReady') {
                         this.$store.dispatch('searchKeyword');
+                        unsubscribe();
                     }
-                })
+                });
             }
         },
         computed: {
             keyword: {
-                get () {
+                get() {
                     return this.$store.state.keyword
                 },
-                set (value) {
+                set(value) {
                     this.$store.dispatch('setKeyword', {
                         keyword: value,
                     });
@@ -40,7 +41,9 @@
         methods: {
             search() {
                 this.$store.dispatch('searchKeyword');
-                this.$router.push(`/s?q=${this.$store.state.keyword}`, () => {}, () => {});
+                this.$router.push(`/s?q=${this.$store.state.keyword}`, () => {
+                }, () => {
+                });
             }
         }
     }
