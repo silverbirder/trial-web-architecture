@@ -4,4 +4,4 @@ https://router.vuejs.org/ja/guide/essentials/
 
 イベント登録のタイミングどうしよう。タイミングによっては、イベント発火が届かない。
 
-■ team-searchがなぜか起動していない
+■ 1つのチームに、複数のエンドポイント公開がうまくできない
