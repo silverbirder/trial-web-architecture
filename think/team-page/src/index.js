@@ -8,7 +8,7 @@ window.postal.subscribe({
     topic: '*.ready',
     callback: function () {
         allReadyCount++;
-        if (allReadyCount == 2) {
+        if (allReadyCount == 3) {
             window.postal.publish({
                 channel: 'page',
                 topic: 'page.allReady',
