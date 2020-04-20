@@ -1,13 +1,12 @@
 import Vue from 'vue';
-import App from './App.vue';
 import store from './store'
 import router from "./router";
 
-const createApp = () => {
+const createApp = (Component) => {
   const app = new Vue({
     store,
     router,
-    render: h => h(App),
+    render: h => h(Component),
   });
   return { app, router };
 };

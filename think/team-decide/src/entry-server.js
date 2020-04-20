@@ -11,7 +11,7 @@ app.listen(port);
 
 app.use("/decide/static/", express.static("./dist"));
 
-app.get('/decide/', (_, res) => {
+app.get('/decide/items', (_, res) => {
     if(production) {
         const js = `<${host}/decide/static/fragment.js>; rel="fragment-script"`;
         res.writeHead(200, {

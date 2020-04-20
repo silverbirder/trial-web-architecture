@@ -2,7 +2,10 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = {
-  entry: path.join(__dirname, 'src/entry-client.js'),
+  entry: [
+      path.join(__dirname, 'src/entry-client-search-box.js'),
+      path.join(__dirname, 'src/entry-client-pagination.js')
+  ],
   output: {
     filename: 'fragment.js',
     path: path.join(__dirname, 'dist')

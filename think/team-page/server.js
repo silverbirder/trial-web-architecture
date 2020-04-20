@@ -10,12 +10,15 @@ const teamDecideHost = process.env.TEAM_DECIDE_HOST || 'http://localhost:3002/de
 const tailor = new Tailor({
     requestFragment: ((_, url, attributes) => {
         let requestURL;
-        switch (url.id) {
-            case 'team-decide':
-                requestURL = teamDecideHost;
+        const splitId = url.id.split('-');
+        const team = splitId[1];
+        const component = splitId[2];
+        switch (team) {
+            case 'decide':
+                requestURL = `${teamDecideHost}/${component}`;
                 break;
-            case 'team-search':
-                requestURL = teamSearchHost;
+            case 'search':
+                requestURL = `${teamSearchHost}/${component}`;
                 break;
         }
         requestURL += `?${querystring.stringify(attributes.query)}`;

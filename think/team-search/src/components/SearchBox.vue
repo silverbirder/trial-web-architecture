@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="team-search-box">
         <input type="text" v-model="keyword"><input type="button" value="search" v-on:click="search">
     </div>
 </template>
@@ -7,6 +7,16 @@
 <script>
     export default {
         created() {
+            if (process.browser) {
+                const $store = this.$store;
+                window.postal.subscribe({
+                    channel: 'page',
+                    topic: 'page.allReady',
+                    callback: function () {
+                        $store.dispatch('setPageAllReady');
+                    }
+                });
+            }
             this.keyword = this.$route.query.q ? this.$route.query.q : '';
             if (this.$store.state.pageAllReady) {
                 this.$store.dispatch('searchKeyword');
