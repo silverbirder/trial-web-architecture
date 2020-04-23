@@ -1,5 +1,7 @@
 import React from 'react';
 import Item from "./Item";
+import {connect} from 'react-redux';
+import {addTask, inputTask} from "./Store/actions/tasks";
 
 class Items extends React.Component {
     constructor(props) {

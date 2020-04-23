@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import tasksReducer from "./reducers/tasks";
 
 const Reducer = combineReducers({
-    // Reducerを追加すればOK
+    tasksReducer
 });
 
 export default Reducer;

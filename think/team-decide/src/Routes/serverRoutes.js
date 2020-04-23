@@ -4,12 +4,15 @@ import ReactDOMServer from 'react-dom/server';
 import {StaticRouter} from 'react-router';
 import {renderRoutes} from 'react-router-config';
 import routes from './routes';
+import {Provider} from "react-redux";
+import configureStore from "../Store/store";
 
 const port = process.env.PORT || 3002;
 const host = process.env.HOST || `http://localhost:${port}`;
 const production = process.env.NODE_ENV === 'production';
 
 const router = express.Router();
+const store = configureStore();
 
 router.get('*', (req, res) => {
     let context = {};
@@ -22,9 +25,11 @@ router.get('*', (req, res) => {
     }
     ReactDOMServer.renderToNodeStream(
         <div>
-            <StaticRouter location={req.url} context={context}>
-                {renderRoutes(routes)}
-            </StaticRouter>
+            <Provider store={store}>
+                <StaticRouter location={req.url} context={context}>
+                    {renderRoutes(routes)}
+                </StaticRouter>
+            </Provider>
         </div>
     ).pipe(res);
 });
