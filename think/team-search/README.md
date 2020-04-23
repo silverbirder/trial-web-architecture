@@ -3,3 +3,5 @@
 https://router.vuejs.org/ja/guide/essentials/
 
 イベント登録のタイミングどうしよう。タイミングによっては、イベント発火が届かない。
+
+初期表示時点で、商品検索した結果をSSRとして返したい。
