@@ -2,6 +2,7 @@ const path = require('path');
 
 const config = {
   entry: path.join(__dirname, 'src/entry-client.jsx'),
+  target: 'node',
   output: {
     filename: 'fragment.js',
     path: path.join(__dirname, 'dist')
