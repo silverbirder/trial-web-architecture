@@ -1,31 +1,28 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import axios from 'axios';
 
 Vue.use(Vuex);
 
 const state = {
     keyword: '',
-    hitItems: [],
-    pageAllReady: false
+    html: ''
 };
 const actions = {
     setKeyword(context, payload) {
         context.commit('setKeyword', payload.keyword);
     },
     searchKeyword(context) {
-        context.commit('searchKeyword');
-    },
-    setPageAllReady(context) {
-        context.commit('setPageAllReady');
+        return axios.get('http://team-decide.fly.dev/decide/items');
     }
 };
 
 const getters = {};
 
 const mutations = {
-    searchKeyword(state) {
+    searchKeyword(state, payload) {
         const mockData = [{id: 1, name: 'apple'}, {id: 2, name: 'banana'}, {id: 3, name: 'orange'}];
-        state.hitItems = mockData.filter((data) => {
+        const hitItems = mockData.filter((data) => {
             return data.name.match(new RegExp(state.keyword)) !== null;
         });
         if (process.browser) {
@@ -33,16 +30,13 @@ const mutations = {
                 channel: 'search',
                 topic: 'search.word',
                 data: {
-                    items: state.hitItems
+                    items: hitItems
                 }
             })
         }
     },
     setKeyword(state, keyword) {
         state.keyword = keyword;
-    },
-    setPageAllReady(state) {
-        state.pageAllReady = true;
     }
 };
 
