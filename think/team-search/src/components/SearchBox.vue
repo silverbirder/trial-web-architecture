@@ -9,9 +9,9 @@
     export default {
         created() {
             this.keyword = this.$route.query.q ? this.$route.query.q : '';
-            this.$store.dispatch('searchKeyword').then((res) => {
-                this.html = res.data;
-            });
+        },
+        preFetch(store) {
+            store.dispatch('searchKeyword')
         },
         computed: {
             keyword: {
@@ -27,9 +27,6 @@
             html: {
                 get() {
                     return this.$store.state.html;
-                },
-                set(value) {
-                    this.$store.state.html = value;
                 }
             }
         },
@@ -37,16 +34,12 @@
             '$route'(to, from) {
                 if (to.query.q === from.query.q) return;
                 this.keyword = to.query.q ? to.query.q : '';
-                this.$store.dispatch('searchKeyword').then((res) => {
-                    this.html = res.data;
-                });
+                this.$store.dispatch('searchKeyword')
             }
         },
         methods: {
             search() {
-                this.$store.dispatch('searchKeyword').then((res) => {
-                    this.html = res.data;
-                });
+                this.$store.dispatch('searchKeyword');
                 this.$router.push(`/s?q=${this.$store.state.keyword}`, () => {
                 }, () => {
                 });

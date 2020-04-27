@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import axios from 'axios';
+import {fetchItems} from "./api";
 
 Vue.use(Vuex);
 
@@ -13,14 +13,6 @@ const actions = {
         context.commit('setKeyword', payload.keyword);
     },
     searchKeyword(context) {
-        return axios.get('http://team-decide.fly.dev/decide/items');
-    }
-};
-
-const getters = {};
-
-const mutations = {
-    searchKeyword(state, payload) {
         const mockData = [{id: 1, name: 'apple'}, {id: 2, name: 'banana'}, {id: 3, name: 'orange'}];
         const hitItems = mockData.filter((data) => {
             return data.name.match(new RegExp(state.keyword)) !== null;
@@ -33,10 +25,25 @@ const mutations = {
                     items: hitItems
                 }
             })
+        } else {
+            return fetchItems().then((html) => {
+                context.commit('setHtml', html)
+            });
         }
     },
+    setHtml(context, payload) {
+        context.commit('setHtml', payload.html);
+    }
+};
+
+const getters = {};
+
+const mutations = {
     setKeyword(state, keyword) {
         state.keyword = keyword;
+    },
+    setHtml(state, html) {
+        state.html = html;
     }
 };
 
