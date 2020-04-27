@@ -7,11 +7,14 @@
 
 <script>
     export default {
-        created() {
-            this.keyword = this.$route.query.q ? this.$route.query.q : '';
-        },
-        preFetch(store) {
-            store.dispatch('searchKeyword')
+        preFetch(store, route) {
+            const keyword = route.query.q ? route.query.q : '';
+            store.dispatch('setKeyword', {
+                keyword: keyword,
+            });
+            store.dispatch('searchKeyword', {
+                keyword: keyword,
+            })
         },
         computed: {
             keyword: {
@@ -34,12 +37,16 @@
             '$route'(to, from) {
                 if (to.query.q === from.query.q) return;
                 this.keyword = to.query.q ? to.query.q : '';
-                this.$store.dispatch('searchKeyword')
+                this.$store.dispatch('searchKeyword', {
+                    keyword: this.keyword,
+                })
             }
         },
         methods: {
             search() {
-                this.$store.dispatch('searchKeyword');
+                this.$store.dispatch('searchKeyword', {
+                    keyword: this.keyword
+                });
                 this.$router.push(`/s?q=${this.$store.state.keyword}`, () => {
                 }, () => {
                 });

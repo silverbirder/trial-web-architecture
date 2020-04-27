@@ -4,7 +4,7 @@ class Item extends React.Component {
     render() {
         return (
             <div>
-                商品名:{this.props.name}
+                item name:{this.props.name}
             </div>
         );
     }

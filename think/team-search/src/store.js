@@ -12,10 +12,10 @@ const actions = {
     setKeyword(context, payload) {
         context.commit('setKeyword', payload.keyword);
     },
-    searchKeyword(context) {
+    searchKeyword(context, payload) {
         const mockData = [{id: 1, name: 'apple'}, {id: 2, name: 'banana'}, {id: 3, name: 'orange'}];
         const hitItems = mockData.filter((data) => {
-            return data.name.match(new RegExp(state.keyword)) !== null;
+            return data.name.match(new RegExp(payload.keyword)) !== null;
         });
         if (process.browser) {
             window.postal.publish({
@@ -26,7 +26,7 @@ const actions = {
                 }
             })
         } else {
-            return fetchItems().then((html) => {
+            return fetchItems(hitItems).then((html) => {
                 context.commit('setHtml', html)
             });
         }

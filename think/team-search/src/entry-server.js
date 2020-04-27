@@ -21,7 +21,7 @@ export default ctx => {
     }
     return Promise.all(matchedComponents.map(component => {
         if (component.preFetch) {
-            return component.preFetch(store)
+            return component.preFetch(store, router.currentRoute)
         }
     })).then(() => {
         ctx.initialState = store.state;
