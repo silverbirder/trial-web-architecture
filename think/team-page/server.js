@@ -9,6 +9,9 @@ const teamDecideHost = process.env.TEAM_DECIDE_HOST || 'http://localhost:3002/de
 
 const tailor = new Tailor({
     requestFragment: ((_, url, attributes) => {
+        if (attributes.params['0'] === 'favicon.ico') {
+            return;
+        }
         let requestURL;
         const splitId = url.id.split('-');
         const team = splitId[1];
