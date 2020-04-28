@@ -1,48 +1,49 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import {fetchItems} from "./api";
 
 Vue.use(Vuex);
 
 const state = {
     keyword: '',
-    hitItems: [],
-    pageAllReady: false
+    html: ''
 };
 const actions = {
     setKeyword(context, payload) {
         context.commit('setKeyword', payload.keyword);
     },
-    searchKeyword(context) {
-        context.commit('searchKeyword');
-    },
-    setPageAllReady(context) {
-        context.commit('setPageAllReady');
-    }
-};
-
-const getters = {};
-
-const mutations = {
-    searchKeyword(state) {
+    searchKeyword(context, payload) {
         const mockData = [{id: 1, name: 'apple'}, {id: 2, name: 'banana'}, {id: 3, name: 'orange'}];
-        state.hitItems = mockData.filter((data) => {
-            return data.name.match(new RegExp(state.keyword)) !== null;
+        const hitItems = mockData.filter((data) => {
+            return data.name.match(new RegExp(payload.keyword)) !== null;
         });
         if (process.browser) {
             window.postal.publish({
                 channel: 'search',
                 topic: 'search.word',
                 data: {
-                    items: state.hitItems
+                    items: hitItems
                 }
             })
+        } else {
+            return fetchItems(hitItems).then((html) => {
+                context.commit('setHtml', html)
+            });
         }
     },
+    setHtml(context, payload) {
+        context.commit('setHtml', payload.html);
+    }
+};
+
+const getters = {};
+
+const mutations = {
     setKeyword(state, keyword) {
         state.keyword = keyword;
     },
-    setPageAllReady(state) {
-        state.pageAllReady = true;
+    setHtml(state, html) {
+        state.html = html;
     }
 };
 

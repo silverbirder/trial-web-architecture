@@ -1,7 +1,8 @@
 import createApp from './app';
 import Pagination from "./components/Pagination";
 
-const {app} = createApp(Pagination);
+const {app, store} = createApp(Pagination);
+store.replaceState(window.__INITIAL_STATE__)
 app.$mount('#team-search-pagination');
 
 window.postal.publish({

@@ -16,6 +16,10 @@ const config = {
   ]
 };
 
+config.resolve.alias = Object.assign({}, baseConfig.resolve.alias, {
+  'create-api': path.join(__dirname, 'src/create-api-server.js')
+});
+
 module.exports = (env, argv) => {
   switch (argv.mode) {
     case 'production':

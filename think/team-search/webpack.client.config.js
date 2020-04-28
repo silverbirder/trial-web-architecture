@@ -1,4 +1,5 @@
 const baseConfig = require('./webpack.base.config');
+const path = require('path');
 
 const config = { ...baseConfig };
 
@@ -12,7 +13,9 @@ module.exports = (env, argv) => {
       // expand config for development
       config.devtool = 'inline-source-map';
       break;
-  }
-
+  };
+  config.resolve.alias = Object.assign({}, baseConfig.resolve.alias, {
+    'create-api': path.join(__dirname, 'src/create-api-client.js')
+  });
   return config;
 };

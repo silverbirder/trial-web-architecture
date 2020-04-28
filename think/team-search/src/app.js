@@ -8,7 +8,7 @@ const createApp = (Component) => {
     router,
     render: h => h(Component),
   });
-  return { app, router };
+  return { app, router, store };
 };
 
 export default createApp;

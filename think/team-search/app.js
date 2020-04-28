@@ -6,6 +6,7 @@ const host = process.env.HOST || `http://localhost:${port}`;
 const production = process.env.NODE_ENV === 'production';
 
 const express = require('express');
+const serialize = require('serialize-javascript');
 const VueServerRenderer = require('vue-server-renderer');
 
 const app = express();
@@ -17,7 +18,10 @@ const renderer = VueServerRenderer.createBundleRenderer(path.join(__dirname, 'di
 app.get('/search/*', (req, res) => {
     const ctx = {url: req.url};
     renderer.renderToString(ctx, (err, html) => {
-        if (err) return res.status(500).end('Interval Server Error');
+        if (err) {
+            console.log(err);
+            return res.status(500).end('Interval Server Error');
+        }
         if (production) {
             const js = `<${host}/search/static/fragment.js>; rel="fragment-script"`;
             res.writeHead(200, {
@@ -26,6 +30,13 @@ app.get('/search/*', (req, res) => {
             });
         } else {
           html += `<script src="${host}/search/static/fragment.js"></script>`
+        }
+        if (ctx.initialState) {
+            res.write(
+                `<script>window.__INITIAL_STATE__=${
+                    serialize(ctx.initialState, { isJSON: true })
+                }</script>`
+            )
         }
         res.end(html);
     });
