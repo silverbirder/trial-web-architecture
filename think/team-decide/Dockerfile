@@ -2,10 +2,15 @@ FROM node:current-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
 
-ENV PORT=8080
-ENV HOST="https://team-decide.fly.dev"
+COPY . .
+RUN npm run build:prod
 
-CMD [ "npm","run", "start" ]
+ENV PORT=8080 \
+    HOST="https://team-decide.fly.dev" \
+    NODE_ENV=production
+
+CMD [ "node", "dist/server.js" ]
