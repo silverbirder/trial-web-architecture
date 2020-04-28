@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:12-alpine
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ RUN npm run build:prod
 
 ENV PORT=8080 \
     HOST="https://team-search.fly.dev" \
-    DECIDE_HOST="https:team-decide.fly.dev" \
+    DECIDE_HOST="https://team-decide.fly.dev" \
     NODE_ENV=production
 
 CMD [ "node","app.js"]
